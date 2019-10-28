@@ -4,7 +4,7 @@ node_js:
 services:
   - postgresql # starts up postgres
 addons:
-  postgresql: '9.6' # highest available postgres version on Travis
+  postgresql: "9.6" # highest available postgres version on Travis
 dist: trusty # uses trusty environment
 sudo: false # when on trusty, uses Docker containers for speed
 notifications:
@@ -15,13 +15,14 @@ install:
   - npm ci # faster, goes only from package-lock
 before_script:
   - psql -c 'create database "deployment-exercise-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
-
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: fsa-pairexercise-deployment
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: HJYPPevEIDnxzyEei8I3fWroUMgO5llZbcpHjkXFI5uX9rhnRfGSM4nfYwmgbUlU+xgg/+qB2VL2n+Nl4UpfEiNY2R6BNQ+Zm2AI8w6s6RlBJWc2ib2ZowV4SUx81d/6AnquHWuwV66bKQHflLBmQ+nqySraySOGPwIYNyBYvspOR1GH5RNy1rPn/aXgBVkSTjc7fVRuJGko2Zn0H39WAsIy/yAWuHCbue0gcUzcHdE2Z6ZcfLVEokXHb7o52Ia92LT3uuVfNNAHVJiWxyxcFC/Ru3bQfR4q1ghzCZaWRSJG29dQVwS8xt9pzzDJcAAVWKegIJKRoZQPkiSl76TI88ARY+XhWD9gMh/ZB6G6P3yQgiAE6d00q2o7U7do9EoolGmP35mTbJsxx6MUblIaiUqdfUw36DqmG4TdA5HN7sFpWk3lQMrPTnRLgPxw2ypPd5lkOd96LvCC7LTDEBYKXmwlrNrBwsggJt0hB131xtLwz8RAGyxkbJMb46X5tN6xMYcRbpSoiiIXxwxEk0O4Nn2G0csdXrfoyyMeVbSsazW7tg+XqZ8p+nIk6e4rxFlsT2iwPF0+PTkZJH3AWf3fnKrRTmHCOgdcaaxnOFpLVY8/wDNrRDDyPNrcdEUba5hdcfi3YTfYwvX6vHAR1z7+X+4wwvnaPiGfToef4BGhNBA=
