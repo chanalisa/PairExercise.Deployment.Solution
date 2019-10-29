@@ -4,7 +4,7 @@ node_js:
 services:
   - postgresql # starts up postgres
 addons:
-  postgresql: '9.6' # highest available postgres version on Travis
+  postgresql: "9.6" # highest available postgres version on Travis
 dist: trusty # uses trusty environment
 sudo: false # when on trusty, uses Docker containers for speed
 notifications:
@@ -15,13 +15,15 @@ install:
   - npm ci # faster, goes only from package-lock
 before_script:
   - psql -c 'create database "deployment-exercise-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
-
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE
+before_deploy: # omit node_modules, since we set skip_cleanup below
+- npm run build-client # make the bundle
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: fsa-pairexercise-deployment
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: I9B+RvXo96LZTDsoYz0h7UZdSO7UkFgikOQWCCDt2JoHHK0o4HW19u4rjhvr6qOXughXGVkhlxAu/5MWR1MU4gfe9QDdisWNABJRhjzKI0KkoyXNOZEAbxS/poEzMxY4vHpTbdlvkffd6ZE8kDlHrlXwpUmuMoKyNpytyVPkIzgtFh5Osbn7rtjyvHUANg+QpgEt5Wkui0ZjdzP712DqW7GyN5yJq8SD7y6McGyG4OP+rSDAX0O1Eq1wPuyzHQXAxkZRUSRr/TJYxEL7H+GxAbS904iWCSE1mMHROJxyNGjDGRBgzuE5dhFET+SOpMw/teo4sayTQ71rim0JchqW2X0ueVaPPKtgJfsTdIbhUG6oyN/QFmfHdcIj5ibemNh3N6R+LDxYya626gr9yPwPL7//Re1TDl1p3jzssh+KB3CCxmOSVvhaR/4hO78BaDUeGVW9CP9aQeFpmGhjQR878JvIrJBOuwP24cn1gTFKapT3vOvbNJ3jGCr5EeTQ7pfzOiwiJOZ+OLgJA0LHhOpf5FuVPeMj7OtFZhQntQ6CURB8WDv/XGOvaKJCDBFjN32kKl6DhZrpvq4L2P5zKMQ7ujC6do8fUtrUfFRiyk1OOKjkb0av7+Iki2WMli7NtGtyW6cew5UXW1jGq8wps8naoYUU3s2WqMbzoETXaqOLo2U=
