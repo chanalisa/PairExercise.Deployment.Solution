@@ -17,7 +17,7 @@ before_script:
   - psql -c 'create database "deployment-exercise-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 before_deploy: # omit node_modules, since we set skip_cleanup below
   - npm run build-client
-    - rm -rf node_modules
+  - rm -rf node_modules
 deploy: # see README for details on these keys
   # prevents travis from deleting the build
   skip_cleanup: true
@@ -26,4 +26,4 @@ deploy: # see README for details on these keys
   app: fsa-pairexercise-deployment
   # the secure key indicates an encrypted value; see README
   api_key:
-    secure: HJYPPevEIDnxzyEei8I3fWroUMgO5llZbcpHjkXFI5uX9rhnRfGSM4nfYwmgbUlU+xgg/+qB2VL2n+Nl4UpfEiNY2R6BNQ+Zm2AI8w6s6RlBJWc2ib2ZowV4SUx81d/6AnquHWuwV66bKQHflLBmQ+nqySraySOGPwIYNyBYvspOR1GH5RNy1rPn/aXgBVkSTjc7fVRuJGko2Zn0H39WAsIy/yAWuHCbue0gcUzcHdE2Z6ZcfLVEokXHb7o52Ia92LT3uuVfNNAHVJiWxyxcFC/Ru3bQfR4q1ghzCZaWRSJG29dQVwS8xt9pzzDJcAAVWKegIJKRoZQPkiSl76TI88ARY+XhWD9gMh/ZB6G6P3yQgiAE6d00q2o7U7do9EoolGmP35mTbJsxx6MUblIaiUqdfUw36DqmG4TdA5HN7sFpWk3lQMrPTnRLgPxw2ypPd5lkOd96LvCC7LTDEBYKXmwlrNrBwsggJt0hB131xtLwz8RAGyxkbJMb46X5tN6xMYcRbpSoiiIXxwxEk0O4Nn2G0csdXrfoyyMeVbSsazW7tg+XqZ8p+nIk6e4rxFlsT2iwPF0+PTkZJH3AWf3fnKrRTmHCOgdcaaxnOFpLVY8/wDNrRDDyPNrcdEUba5hdcfi3YTfYwvX6vHAR1z7+X+4wwvnaPiGfToef4BGhNBA=
+    secure: c32ullv3QLRwq4S/OvvMiBGdO4/gb5cm0YBml77Xzf5y2atrymYBJFv001nrtip2VwnmBzGXjz18rgDCJQO4wb/NNY5gnbP5JjiR+TFDD1wAh2tazT9+68jFJEwnpcwMHSucZNqmkzEVtCyp9lPfEW59M5AoJdVDlB978AFoMMWlaZ7cxayeis6/IhTikQmZeW7qCoNmJ4cCN4x0YW00pqTXSaXiQS1U1n6aOphhCEP3s4Bo5fNgYig2C/g3GryaMXi2rwer5AFHf9FoHMl17FyCx/OWo3b9anvPktS+jkAMp79e1rv6GzDypLhh/wWNNpZUItTWHvWyG0KJ8DX0qGEp1tuQVDYm1BUDeaKYJUCfKHcFRhlB94wH6N9y3PYQeEtfX+yT+LeZ4u0GbzkvXxjXIcsiq5IqFRPiFn3ok2eX68auN5k26YyImJ/rCMGI6K8Ya2nhGGErlWIPpOxj4zEFA73S1pZiHrPmVfYdK4W7F0drAF8mUy6N3GcrPk9+t3T1fOsxfa9xvWpWaUH+gwH1gP795vfIZLDzXuTOWIsaj7HkLYFOBTx+7zrJhsGgS8e6IaQhNvqWVwp3tLLas6v5Qok9N8lEj0clujVJxgygO8jmyvAsV8bzWbHASrbq+00zUYt9Ah9J1pFmuMH6hYIIjkzgtQ4XYtt45y4aEDU=
