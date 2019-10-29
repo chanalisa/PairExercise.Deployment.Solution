@@ -16,8 +16,8 @@ install:
 before_script:
   - psql -c 'create database "deployment-exercise-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 before_deploy: # omit node_modules, since we set skip_cleanup below
-- npm run build-client # make the bundle
-  - rm -rf node_modules
+  - npm run build-client
+    - rm -rf node_modules
 deploy: # see README for details on these keys
   # prevents travis from deleting the build
   skip_cleanup: true
@@ -26,4 +26,4 @@ deploy: # see README for details on these keys
   app: fsa-pairexercise-deployment
   # the secure key indicates an encrypted value; see README
   api_key:
-    secure: I9B+RvXo96LZTDsoYz0h7UZdSO7UkFgikOQWCCDt2JoHHK0o4HW19u4rjhvr6qOXughXGVkhlxAu/5MWR1MU4gfe9QDdisWNABJRhjzKI0KkoyXNOZEAbxS/poEzMxY4vHpTbdlvkffd6ZE8kDlHrlXwpUmuMoKyNpytyVPkIzgtFh5Osbn7rtjyvHUANg+QpgEt5Wkui0ZjdzP712DqW7GyN5yJq8SD7y6McGyG4OP+rSDAX0O1Eq1wPuyzHQXAxkZRUSRr/TJYxEL7H+GxAbS904iWCSE1mMHROJxyNGjDGRBgzuE5dhFET+SOpMw/teo4sayTQ71rim0JchqW2X0ueVaPPKtgJfsTdIbhUG6oyN/QFmfHdcIj5ibemNh3N6R+LDxYya626gr9yPwPL7//Re1TDl1p3jzssh+KB3CCxmOSVvhaR/4hO78BaDUeGVW9CP9aQeFpmGhjQR878JvIrJBOuwP24cn1gTFKapT3vOvbNJ3jGCr5EeTQ7pfzOiwiJOZ+OLgJA0LHhOpf5FuVPeMj7OtFZhQntQ6CURB8WDv/XGOvaKJCDBFjN32kKl6DhZrpvq4L2P5zKMQ7ujC6do8fUtrUfFRiyk1OOKjkb0av7+Iki2WMli7NtGtyW6cew5UXW1jGq8wps8naoYUU3s2WqMbzoETXaqOLo2U=
+    secure: HJYPPevEIDnxzyEei8I3fWroUMgO5llZbcpHjkXFI5uX9rhnRfGSM4nfYwmgbUlU+xgg/+qB2VL2n+Nl4UpfEiNY2R6BNQ+Zm2AI8w6s6RlBJWc2ib2ZowV4SUx81d/6AnquHWuwV66bKQHflLBmQ+nqySraySOGPwIYNyBYvspOR1GH5RNy1rPn/aXgBVkSTjc7fVRuJGko2Zn0H39WAsIy/yAWuHCbue0gcUzcHdE2Z6ZcfLVEokXHb7o52Ia92LT3uuVfNNAHVJiWxyxcFC/Ru3bQfR4q1ghzCZaWRSJG29dQVwS8xt9pzzDJcAAVWKegIJKRoZQPkiSl76TI88ARY+XhWD9gMh/ZB6G6P3yQgiAE6d00q2o7U7do9EoolGmP35mTbJsxx6MUblIaiUqdfUw36DqmG4TdA5HN7sFpWk3lQMrPTnRLgPxw2ypPd5lkOd96LvCC7LTDEBYKXmwlrNrBwsggJt0hB131xtLwz8RAGyxkbJMb46X5tN6xMYcRbpSoiiIXxwxEk0O4Nn2G0csdXrfoyyMeVbSsazW7tg+XqZ8p+nIk6e4rxFlsT2iwPF0+PTkZJH3AWf3fnKrRTmHCOgdcaaxnOFpLVY8/wDNrRDDyPNrcdEUba5hdcfi3YTfYwvX6vHAR1z7+X+4wwvnaPiGfToef4BGhNBA=
